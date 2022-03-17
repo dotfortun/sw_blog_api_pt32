@@ -5,7 +5,7 @@ from flask_admin.contrib.sqla import ModelView
 
 
 class UserView(ModelView):
-    column_exclude_list = ['password', ]
+    column_exclude_list = ['_password', ]
 
 
 def setup_admin(app):
@@ -15,7 +15,7 @@ def setup_admin(app):
 
     
     # Add your models here, for example this is how we add a the User model to the admin
-    admin.add_view(ModelView(User, db.session))
+    admin.add_view(UserView(User, db.session))
     admin.add_view(ModelView(Person, db.session))
 
     # You can duplicate that line to add mew models
