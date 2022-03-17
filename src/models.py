@@ -7,7 +7,7 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    _password = db.Column(db.String(80), unique=False, nullable=False)
+    _password = db.Column(db.String(128), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
 
     def __repr__(self):
@@ -25,7 +25,7 @@ class User(db.Model):
         return self._password
 
     @password.setter
-    def set_password(self, password):
+    def password(self, password):
         self._password = generate_password_hash(password)
 
     def check_password_hash(self, password):

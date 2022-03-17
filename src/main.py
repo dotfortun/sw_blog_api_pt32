@@ -53,7 +53,7 @@ def login():
     password = request.json.get("pass", None)
     user = db.session.query(User).filter_by(email=email).one_or_none()
     if user is not None:
-        if password == user.password:
+        if user.check_password_hash(password):
             access_token = create_access_token(identity=email)
             return jsonify(access_token=access_token)
     return jsonify({"msg": "Invalid cedentials."}), 401
