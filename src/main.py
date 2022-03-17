@@ -46,7 +46,6 @@ def user():
     response_body = {
         "msg": "Hello, this is your GET /user response "
     }
-
     return jsonify(response_body), 200
 
 
